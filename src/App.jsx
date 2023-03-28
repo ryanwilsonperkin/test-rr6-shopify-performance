@@ -1,5 +1,6 @@
 import {createBrowserRouter, RouterProvider, Link} from "react-router-dom";
 import {Performance} from '@shopify/performance';
+import {PerformanceContext, usePerformanceMark, Stage} from '@shopify/react-performance';
 
 const performance = new Performance();
 performance.on('navigation', ({target, isFullPageNavigation}) => {
@@ -18,10 +19,15 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <PerformanceContext.Provider value={performance}>
+      <RouterProvider router={router} />
+    </PerformanceContext.Provider>
+  );
 }
 
 function Home() {
+  usePerformanceMark(Stage.Complete, 'home');
   return (
     <div>
       <Link to="/example">Example</Link>
@@ -31,6 +37,7 @@ function Home() {
 }
 
 function Example() {
+  usePerformanceMark(Stage.Complete, 'example');
   return (
     <div>
       <Link to="/">Home</Link>

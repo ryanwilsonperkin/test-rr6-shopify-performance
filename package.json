@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@shopify/network": "^3.2.1",
     "@shopify/performance": "^3.2.4",
+    "@shopify/react-performance": "^3.0.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0"
